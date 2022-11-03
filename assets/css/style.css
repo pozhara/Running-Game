@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color:white;
   }
   
   section {
@@ -25,6 +26,13 @@
     padding: 10px;
     font-size: 25px;
   }
+  #computer-hand, #your-hand{
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+  #computer-hand img, #your-hand img{
+    height:20px;
+  }
   
   .intro {
     color: rgb(224, 224, 224);
@@ -45,8 +53,8 @@
     padding:30px 30px;
     background: none;
     border: none;
-    color: rgb(224, 224, 224);
-    font-size: 20px;
+    color:white;
+    font-size:25px;
     background: rgb(45, 117, 96);
     border-radius: 3px;
     cursor: pointer;
@@ -75,10 +83,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-  }
-  
-  .player-hand {
-    transform: rotateY(180deg);
   }
   
   div.fadeOut {
