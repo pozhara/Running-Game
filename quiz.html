@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Start Quiz</title>
+</head>
+<body>
+    <section id="quiz">
+        <!--Title -->
+        <h1>The Last of Us II Quiz</h1>
+
+        <section id="questions">
+          <h2 id="question"></h2>
+          <ol type="A">
+            <li class="option"><span id="option0" onclick="calcScore()"></span></li>
+            <li class="option"><span id="option1" onclick="calcScore()"></span></li>
+            <li class="option"><span id="option2" onclick="calcScore()"></span></li>
+          </ol>
+        <button id="next">Next</button>
+        <h4 id="stat"></h4>
+        </section>
+
+        <div id="scoreboard" class="hidden">
+          <h2 id="score-title">Your Score</h2>
+          <h3 id="score"></h3>
+          <button id="score-btn" onclick="backToQuiz()">Back to Quiz</button>
+        </div>
+
+    </section>
+ 
+</body>
+</html>

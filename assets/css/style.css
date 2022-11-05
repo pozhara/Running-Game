@@ -26,7 +26,6 @@ h1 {
     left:50%;
     transform:translate(-50%, -50%);
     cursor:pointer;
-    display:none;
 }
 
 #start:hover{
@@ -42,7 +41,6 @@ h1 {
     background-color:rgb(6, 104, 6, 0.6);
     border-radius:10px;
     border:none;
-    display:none;
 }
 
 #question{
@@ -117,4 +115,8 @@ h1 {
 #score-btn:hover{
     background-color:darkgreen;
     color:white;
+}
+
+.hidden{
+    display:none;
 }
