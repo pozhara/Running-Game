@@ -1,4 +1,4 @@
-let quiz = [
+const quiz = [
     {
         "q": "If you could be anywhere, where would you be?",
         "a": {

@@ -81,7 +81,7 @@ h1 {
     color:white;
 }
 
-#scoreboard{
+#result{
     position:absolute;
     left:50%;
     top:50%;
@@ -92,7 +92,7 @@ h1 {
     border:none;
 }
 
-#score-title{
+#result-title{
     text-align:center;
 }
 
