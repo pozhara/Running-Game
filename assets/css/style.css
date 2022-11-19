@@ -1,21 +1,19 @@
-html {
-    background-image: url(../images/thelastofus2.jpg);
+html{
+    background-image: url("../images/thelastofus2.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color:white;
+    color:bisque;
 }
 
-h1 {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 25px;
+#heading{
+    text-align:center;
 }
 
 #start{
-    background-color:rgb(6, 104, 6, 0.6);
-    color:white;
+    background-color:rgb(1, 45, 1, 0.6);
+    color:bisque;
     border:none;
     outline:none;
     border-radius:10px;
@@ -28,95 +26,150 @@ h1 {
     cursor:pointer;
 }
 
-#start:hover{
-    background-color:rgb(6, 104, 6);
+#description{
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align:center;
 }
 
-#questions{
+#quiz{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
     width:420px;
-    background-color:rgb(6, 104, 6, 0.6);
     border-radius:10px;
-    border:none;
+    background-color:rgb(1, 45, 1, 0.6);
+    user-select:none;
 }
 
-#question{
+.title{
     text-align:center;
 }
 
-.option{
-    padding:10px 10px;
+ul{
+    list-style-type: none;
+}
+
+li{
     font-size:20px;
-    cursor:pointer;
-    border-bottom:2px solid rgb(245, 240, 240, 0.6);
+    margin-bottom:7px;
 }
 
-.option:hover{
-    color:bisque;
+li:hover{
+    font-size:22px;
+    color:rgb(181, 110, 24);
 }
 
-#stat{
-    padding-left:20px;
-    user-select: none;
-}
-
-#next{
-    padding:10px 20px;
-    background-color:white;
-    color:darkgreen;
+#submit{
+    background-color:bisque;
+    color:rgb(1, 45, 1);
     border:none;
     outline:none;
     border-radius:10px;
+    padding:6px 12px;
+    font-size:18px;
+    cursor:pointer;
     float:right;
     margin-bottom:15px;
     margin-right:15px;
-    cursor:pointer;
 }
 
-#next:hover{
-    background-color:darkgreen;
-    color:white;
-}
-
-#result{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
-    width:420px;
-    background-color:rgb(6, 104, 6, 0.6);
-    border-radius:10px;
-    border:none;
-}
-
-#result-title{
-    text-align:center;
+#submit:hover{
+    background-color:rgb(181, 110, 24);
 }
 
 #score{
-    text-align:center;
+    margin-bottom:0px;
+    text-align:center
 }
 
-#score-btn{
-    padding:8px 16px;
-    background-color:white;
-    color:darkgreen;
+.check{
+    background-color:bisque;
+    color:rgb(1, 45, 1);
     border:none;
     outline:none;
     border-radius:10px;
+    padding:6px 12px;
+    font-size:18px;
+    cursor:pointer;
+    float:left;
     margin-bottom:15px;
     margin-left:15px;
-    cursor:pointer;
 }
 
-#score-btn:hover{
-    background-color:darkgreen;
-    color:white;
+.check:hover{
+    background-color:rgb(181, 110, 24);
+}
+
+.summary{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.result{
+    text-align:center;
+    font-size:18px;
 }
 
 .hidden{
     display:none;
+}
+
+#correct-answers{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:420px;
+    border-radius:10px;
+    background-color:rgb(1, 45, 1, 0.6);
+    user-select:none;
+    text-align:center;
+}
+
+#correct-answers h1{
+    margin-bottom:7px;
+}
+
+#correct-answers h3{
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+#correct-answers h3:last-child{
+    margin-bottom:7px;
+}
+
+#progress{
+    float:left;
+    margin-bottom:15px;
+    margin-left:10px;
+}
+
+.play-again{
+    background-color:bisque;
+    color:rgb(1, 45, 1);
+    border:none;
+    outline:none;
+    border-radius:10px;
+    padding:6px 12px;
+    font-size:18px;
+    cursor:pointer;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.play-again:hover{
+    background-color:rgb(181, 110, 24);
+}
+
+@media screen and (max-width:500px){
+    #quiz{
+        width:300px;
+    }
+    #correct-answers{
+        width:300px;
+    }
 }

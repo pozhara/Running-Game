@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>The Last of Us II Quiz</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last of Us Quiz</title>
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
-
 <body>
-  <section id="quiz">
-    <!--Title -->
-    <h1>The Last of Us II Quiz</h1>
-
-    <section id="quiz">
-      <div class="question"></div>
-      <ul class="answer"></ul>
-    </section>
-
-    <div id="result" class="hidden">
-      <h2 id="result-title">What you got:</h2>
-      <div class="image"></div>
-      <h3 class="endanswer"></h3>
-      <a href="index.html"><button id="score-btn">Back to Quiz</button></a>
+    <h1 id="heading">The Last of Us Quiz</h1>
+    <h2 id="description">This is a quiz about The Last of Us games. There are 11 questions with four possible answers, only one right. You can access your scoreboard and play again after finishing the quiz. Good luck!</h2>
+    <button id="start">Start Quiz</button>
+    <div id="quiz" class="hidden">
+        <div id="score"></div>
+        <div id="header">
+            <h2 class="title">Loading the question...</h2>
+        </div>
+        <ul id="list">
+            <li>
+                <label>
+                    <input type="radio" class="answer" name="answer">
+                    <span></span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="answer" name="answer">
+                    <span></span>
+                </label>
+            </li>
+        </ul>
+        <div id="progress"></div>
+        <button id="submit">Submit</button>
     </div>
-
-  </section>
-  <script src="assets/javascript/script.js"></script>
-  <script src="assets/javascript/answers.js"></script>
-  <script src="assets/javascript/questions.js"></script>
+    <div id="correct-answers" class="hidden">
+        <h1>Correct Answers</h1>
+        <h3>1. Anna</h3>
+        <h3>2. 50s</h3>
+        <h3>3. Lieutenant</h3>
+        <h3>4. Toy robot</h3>
+        <h3>5. God of War</h3>
+        <h3>6. 19</h3>
+        <h3>7. Savage Starlight</h3>
+        <h3>8. Frank</h3>
+        <h3>9. Three weeks</h3>
+        <h3>10. Lincoln High School</h3>
+        <h3>11. 14</h3>
+        <button class="play-again">Play Again</button>
+    </div>
+    <script src="assets/javascript/script.js"></script>
 </body>
-
 </html>

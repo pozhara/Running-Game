@@ -1,42 +1,181 @@
-window.addEventListener('load', (event) =>{
-    let answer={};
-    let step=0;
+function shuffle(answer) {
+    let currentIndex = answer.length,
+        randomIndex;
 
-    function showQuestion(){
-        document.querySelector(".question").innerHTML=quiz[step]['q'];
-        let answer="";
-        for (let key in quiz[step]["a"]){
-            answer+=`<li data-v="${key}" class="answer-variant">${quiz[step]["a"][key]}</li>`
-        }
-        document.querySelector(".answer").innerHTML=answer;
-    }
-    document.onclick=function(event){
-        event.stopPropagation();
-        if(event.target.classList.contains("answer-variant")&& step<quiz.length){
-            event.target;
-            if(result[event.target.dataset.v] != undefined){
-                result[event.target.dataset.v]++;
-            } else {
-                result[event.target.dataset.v] = 0;
-            }
-            step++;
-            if(step==quiz.length){
-                document.querySelector(".question").remove();
-                document.querySelector(".answer").remove();
-                showResult();
-            } else {
-                showQuestion(step);
-            }
-        }
-        showQuestion(step);
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [answer[currentIndex], answer[randomIndex]] = [
+            answer[randomIndex], answer[currentIndex]
+        ];
     }
 
-    function showResult(){
-        let key=Object.keys(result).reduce(function(a, b){
-            return result[a] > result[b] ? a : b;
-        })
-        document.querySelector(".image").innerHTML=answers[key]["image"];
-        document.querySelector(".endanswer").innerHTML=answers[key]["descriptions"];
+    return answer;
+}
+
+
+const questions = [{
+    question: "What is the name of Ellie's mom?",
+    answer: ["Jessica", "Monica", "Anna", "Tess"],
+    correct: "Anna",
+},
+{
+    question: "Around how old is Joel in The Last of Us Part II?",
+    answer: ["40s", "50s", "60s", "70s"],
+    correct: "50s",
+},
+{
+    question: "What is Manny's rank in the WLF?",
+    answer: ["Sergeant", "Captain", "Lieutenant", "Corporal"],
+    correct: "Lieutenant",
+},
+{
+    question: "What item does Ellie keep of Sam's that can be seen in her room at the start of The Last of Us Part II?",
+    answer: ["PS3", "Toy robot", "Cassette player", "Animals of the Past book"],
+    correct: "Toy robot",
+},
+{
+    question: "Which game does NOT get referenced in The Last of US Part II?",
+    answer: ["Deus Ex", "God of War", "Jak and Daxter", "Crash Bandicoot"],
+    correct: "God of War",
+}
+];
+
+/* Getting elements from the DOM */
+let headerContainer = document.getElementById("header");
+let listContainer = document.getElementById("list");
+let submitBtn = document.getElementById("submit");
+let startBtn = document.getElementById("start");
+let quiz = document.getElementById("quiz");
+
+let questionIndex = 0;
+let score = 0;
+
+
+
+startBtn.onclick = function () {
+    startBtn.classList.add("hidden");
+    quiz.classList.remove("hidden");
+    document.getElementById("description").classList.add("hidden");
+};
+
+function clearPage() {
+    headerContainer.innerHTML = "";
+    listContainer.innerHTML = "";
+}
+
+clearPage();
+showQuestion();
+submitBtn.onclick = checkAnswer;
+
+function showQuestion() {
+    /*Show a question*/
+    let headerTemplate = `<h2 class="title">%title%</h2>`;
+    let title = headerTemplate.replace('%title%', questions[questionIndex].question);
+    headerContainer.innerHTML = title;
+
+
+
+    headerContainer.innerHTML = `<h2 class="title">${questions[questionIndex].question}</h2>`;
+
+    const lis = questions[questionIndex].answer.map((answer, index) =>
+        `<li>
+          <label>
+             <input value="%number%" type="radio" class="answer" name="answer">
+             <span>${answer}</span>
+          </label>
+         </li>`);
+
+    listContainer.innerHTML = shuffle(lis).join('');
+
+    let progress = `<p>${questionIndex + 1} out of ${questions.length}</p>`;
+    document.getElementById("progress").innerHTML = progress;
+
+    let scoreBoard = `<p>Score: ${score} out of ${questions.length}</p>`;
+    document.getElementById("score").innerHTML = scoreBoard;
+
+}
+
+/* Function to check answer*/
+function checkAnswer() {
+    /* Finding checked button */
+    const checkedButton = listContainer.querySelector('input[type="radio"]:checked');
+
+    /* If button wasn't checked - escape function */
+    if (!checkedButton) {
+        return;
     }
-    showQuestion(step);
-})
+
+    /* Get the number of user's answer */
+    const userAnswer = checkedButton.value;
+
+    /* Check answer and increment score */
+    if(userAnswer==questions[questionIndex].correct){
+        score++;
+    }
+
+    /* Taking action if it was the last question */
+    if (questionIndex !== questions.length - 1) {
+        questionIndex++;
+        clearPage();
+        showQuestion();
+    } else {
+        clearPage();
+        showResult();
+    }
+}
+
+
+/* Function to show results*/
+function showResult() {
+    document.getElementById("progress").classList.add("hidden");
+    /* Template of HTML structure of results */
+    const resultTemplate = `<h2 class="title">%title%</h2>
+<h3 class="summary">%message%</h3>
+<p class="result">%result%</p>
+<button class="check">Show Answers</button>`;
+
+    let title;
+    let message;
+
+    /* Cheking the score*/
+    if (score === questions.length) {
+        title = "Congratulations!";
+        message = "You answered every question right!";
+    } else if ((score * 100) / questions.length >= 50) {
+        title = "Not bad!";
+        message = "You answered more than a half right!";
+    } else {
+        title = "Could be better";
+        message = "You answered less than a half right";
+    }
+
+    let result = `${score} out of ${questions.length}`;
+
+    /* Final message */
+    const finalMessage = resultTemplate.replace('%title%', title).replace('%message%', message).replace('%result%', result);
+
+    headerContainer.innerHTML = finalMessage;
+
+    /* Change submit to play again and reloads page on onclick*/
+    submitBtn.innerText = 'Play Again';
+    submitBtn.onclick = function () {
+        window.location.reload();
+    };
+
+    let correctAnswer = document.getElementById("correct-answers");
+    document.querySelector(".check").onclick = function () {
+        quiz.classList.add("hidden");
+        correctAnswer.classList.remove("hidden");
+    };
+
+    let playAgain = document.querySelector(".play-again");
+    playAgain.onclick = function () {
+        window.location.reload();
+    };
+}
