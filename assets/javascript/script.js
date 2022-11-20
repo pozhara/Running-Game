@@ -115,7 +115,7 @@ function checkAnswer() {
     const userAnswer = checkedButton.value;
 
     /* Check answer and increment score */
-    if(userAnswer==questions[questionIndex].correct){
+    if (userAnswer == questions.correct) {
         score++;
     }
 
@@ -172,6 +172,17 @@ function showResult() {
     document.querySelector(".check").onclick = function () {
         quiz.classList.add("hidden");
         correctAnswer.classList.remove("hidden");
+
+        let userInfo=[{userScore: `${score}`}];
+
+        let userScoreTemplate=`<h3>Score: ${score}</h3>`;
+
+        let userScoreBoard=document.getElementById("user-score");
+
+        userScoreBoard.innerHTML=userScoreTemplate;
+
+        
+        
     };
 
     let playAgain = document.querySelector(".play-again");
