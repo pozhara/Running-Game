@@ -86,7 +86,7 @@ function showQuestion() {
     const lis = questions[questionIndex].answer.map((answer, index) =>
         `<li>
           <label>
-             <input value="%number%" type="radio" class="answer" name="answer">
+             <input value="`+questions[questionIndex].answer[index]+`" type="radio" class="answer" name="answer">
              <span>${answer}</span>
           </label>
          </li>`);
@@ -115,7 +115,7 @@ function checkAnswer() {
     const userAnswer = checkedButton.value;
 
     /* Check answer and increment score */
-    if (userAnswer == questions.correct) {
+    if (userAnswer == questions[questionIndex].correct) {
         score++;
     }
 
@@ -173,16 +173,14 @@ function showResult() {
         quiz.classList.add("hidden");
         correctAnswer.classList.remove("hidden");
 
-        let userInfo=[{userScore: `${score}`}];
+        const lastScore = localStorage.getItem("latestScore") || [];
+        localStorage.setItem("latestScore", `${score}`);
 
-        let userScoreTemplate=`<h3>Score: ${score}</h3>`;
+        let userScoreTemplate=`<h3>Score: ${lastScore}</h3>`;
 
         let userScoreBoard=document.getElementById("user-score");
 
         userScoreBoard.innerHTML=userScoreTemplate;
-
-        
-        
     };
 
     let playAgain = document.querySelector(".play-again");
